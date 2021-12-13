@@ -5,23 +5,43 @@ import java.time.format.DateTimeFormatter;
 
 public class DateFormatChange {
 	
-	private DateTimeFormatter formatIso8601Slash;
+	/**
+	 *  yyyy-MM-dd
+	 */
+	private DateTimeFormatter iso8601;
+	
+	/**
+	 *  yyyy/MM/dd
+	 */
+	private DateTimeFormatter iso8601Slash;
 	
 	/**
 	 * コンストラクタ
 	 */
 	public DateFormatChange() {
-		this.formatIso8601Slash = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		this.iso8601Slash = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		this.iso8601 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	}
 	
 	/**
-	 * iso8601へ変換を行う
+	 * yyyy-MM-ddへ変換を行う
 	 * @param preChangeDate
 	 * @return
 	 */
 	public String changeIso8601(LocalDate preChangeDate) {
-
-		String postChangeDate = preChangeDate.format(formatIso8601Slash);
+		String postChangeDate = preChangeDate.format(iso8601);
+		System.out.println("変換前2: " + postChangeDate);
+		
+		return postChangeDate;
+	}
+	
+	/**
+	 * yyyy/MM/ddへ変換を行う
+	 * @param preChangeDate
+	 * @return
+	 */
+	public String changeIso8601Slash(LocalDate preChangeDate) {
+		String postChangeDate = preChangeDate.format(iso8601Slash);
 		System.out.println("変換前2: " + postChangeDate);
 		
 		return postChangeDate;
